@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "ttree-menu"
+version = "0.1.0"
+description = ""
+authors = ["Kariyma <mariika-sun@yandex.ru>"]
+readme = "README.md"
+packages = [{include = "ttree_menu"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+flake8 = "6.0.0"
+pre-commit = "3.1.0"
+
+[tool.poetry.group.build.dependencies]
+django = "4.1.7"
+psycopg2-binary = "2.9.5"
+python-dotenv = "1.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
