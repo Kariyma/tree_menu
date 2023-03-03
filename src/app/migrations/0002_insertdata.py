@@ -31,7 +31,7 @@ class Migration(migrations.Migration):
                 INSERT INTO content.menu_item (id, name, path, main_menu_id, parent_id, created, modified) 
                 VALUES 
                     ('{get_uuid('11')}', 'Main', '/main/', '{get_uuid('01')}', null, '{get_now()}', '{get_now()}'),
-                    ('{get_uuid('12')}', 'About', '/about_us', '{get_uuid('01')}', null, '{get_now()}', '{get_now()}'),
+                    ('{get_uuid('12')}', 'About', '/about_us/', '{get_uuid('01')}', null, '{get_now()}', '{get_now()}'),
                     ('{get_uuid('13')}', 'Top level', '/top_level/', '{get_uuid('01')}', null, '{get_now()}', '{get_now()}'),
                     ('{get_uuid('14')}', 'Sub-item 14', '/top_level/sub-item_14', '{get_uuid('01')}', '{get_uuid('13')}', '{get_now()}', '{get_now()}'),
                     ('{get_uuid('15')}', 'Sub-item 15', '/top_level/sub-item_15', '{get_uuid('01')}', '{get_uuid('13')}', '{get_now()}', '{get_now()}'),

@@ -4,7 +4,7 @@ from .views import base
 
 urlpatterns = [
     path('main/', base, {'name': 'Main'}, name='main'),
-    path('about_us/', base, {'name': 'About company'}, name='About'),
+    path('about_us/', base, {'name': 'About company'}, name='About_us'),
     path('top_level/', base, {'name': 'Top Level'}, name='Top_level'),
     path('links/', base, {'name': 'Links'}, name='Links'),
     path('top_level/sub-item_14', base, {'name': 'Sub-item 14'}, name='Sub-item_14'),
