@@ -21,7 +21,7 @@ lib/
 lib64/
 parts/
 sdist/
-static/
+/nginx/static/
 var/
 wheels/
 pip-wheel-metadata/
