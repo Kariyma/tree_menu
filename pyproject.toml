@@ -4,7 +4,7 @@ version = "0.1.0"
 description = ""
 authors = ["Kariyma <mariika-sun@yandex.ru>"]
 readme = "README.md"
-packages = [{include = "ttree_menu"}]
+#packages = [{include = "ttree_menu"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
@@ -15,6 +15,8 @@ pre-commit = "3.1.0"
 django = "4.1.7"
 psycopg2-binary = "2.9.5"
 python-dotenv = "1.0.0"
+django-split-settings = "1.2.0"
+django-debug-toolbar = "3.8.1"
 
 [build-system]
 requires = ["poetry-core"]

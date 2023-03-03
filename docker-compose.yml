@@ -1,0 +1,82 @@
+version: '3.8'
+
+x-base-service: &base_service
+  networks:
+    - tree_menu
+
+services:
+
+  tree_menu_db:
+    <<: *base_service
+    container_name: tree_menu_db
+    hostname: tree_menu_db
+    image: postgres:13-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    ports:
+      - 5432:5432
+    volumes:
+      - tree_menu_db_volume:/var/lib/postgresql/data
+    profiles:
+      - dev
+      - prod
+    healthcheck:
+      test: pg_isready -U ${DB_USER} -D ${DB_NAME} > /dev/null; if [[ $$? == 0 ]]; then echo 0; else echo 1; fi
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  tree_menu_app:
+    <<: *base_service
+    build: .
+    container_name: tree_menu_app
+    hostname: tree_menu_app
+    command: gunicorn config.wsgi:application --bind 0.0.0.0:${PORT}
+    profiles:
+      - prod
+    expose:
+      - ${PORT}
+    volumes:
+      - ./src:/opt/content
+      - staticfiles_volume:/opt/staticfiles
+      - mediafiles_volume:/opt/mediafiles
+    healthcheck:
+      test: curl http://notice-admin_panel:${PORT} >/dev/null; if [[ $$? == 52 ]]; then echo 0; else echo 1; fi
+      interval: 3s
+      timeout: 10s
+      retries: 5
+    depends_on:
+      tree_menu_db:
+        condition: service_healthy
+
+  nginx:
+    <<: *base_service
+    image: nginx:1.23.1-alpine
+    container_name: nginx
+    env_file: .env
+    profiles:
+      - prod
+    depends_on:
+      tree_menu_app:
+        condition: service_healthy
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/configs:/etc/nginx/conf.d:ro
+      - ./nginx/static/errors:/var/www/errors/:ro
+      - ./nginx/static/log/access_log:/var/log/nginx/access.log:rw
+      - ./nginx/static/log/error_log:/var/log/nginx/error.log:rw
+      - staticfiles_volume:/data/staticfiles/:ro
+      - mediafiles_volume:/data/mediafiles/:ro
+    ports:
+      - ${PORT}:${PORT}
+
+volumes:
+  tree_menu_db_volume:
+  staticfiles_volume:
+  mediafiles_volume:
+
+networks:
+  tree_menu:
