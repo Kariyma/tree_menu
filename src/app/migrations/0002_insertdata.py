@@ -30,16 +30,16 @@ class Migration(migrations.Migration):
 
                 INSERT INTO content.menu_item (id, name, path, main_menu_id, parent_id, created, modified) 
                 VALUES 
-                    ('{get_uuid('11')}', 'Main', 'main', '{get_uuid('01')}', null, '{get_now()}', '{get_now()}'),
-                    ('{get_uuid('12')}', 'About', 'about_us', '{get_uuid('01')}', null, '{get_now()}', '{get_now()}'),
-                    ('{get_uuid('13')}', 'Top level', 'top_level', '{get_uuid('01')}', null, '{get_now()}', '{get_now()}'),
-                    ('{get_uuid('14')}', 'Sub-item 14', 'sub-item_14', '{get_uuid('01')}', '{get_uuid('13')}', '{get_now()}', '{get_now()}'),
-                    ('{get_uuid('15')}', 'Sub-item 15', 'sub-item_15', '{get_uuid('01')}', '{get_uuid('13')}', '{get_now()}', '{get_now()}'),
-                    ('{get_uuid('16')}', 'Sub-item 16', 'sub-item_16', '{get_uuid('01')}', '{get_uuid('15')}', '{get_now()}', '{get_now()}'),
-                    ('{get_uuid('17')}', 'Item 17', 'item_17', '{get_uuid('01')}', '{get_uuid('15')}', '{get_now()}', '{get_now()}'),
-                    ('{get_uuid('18')}', 'Item 18', 'item_18', '{get_uuid('01')}', '{get_uuid('15')}', '{get_now()}', '{get_now()}'),
-                    ('{get_uuid('19')}', 'Item 19', 'item_19', '{get_uuid('01')}', '{get_uuid('16')}', '{get_now()}', '{get_now()}'),    
-                    ('{get_uuid('110')}', 'Links', 'links', '{get_uuid('01')}', null, '{get_now()}', '{get_now()}'),
+                    ('{get_uuid('11')}', 'Main', '/main/', '{get_uuid('01')}', null, '{get_now()}', '{get_now()}'),
+                    ('{get_uuid('12')}', 'About', '/about_us', '{get_uuid('01')}', null, '{get_now()}', '{get_now()}'),
+                    ('{get_uuid('13')}', 'Top level', '/top_level/', '{get_uuid('01')}', null, '{get_now()}', '{get_now()}'),
+                    ('{get_uuid('14')}', 'Sub-item 14', '/top_level/sub-item_14', '{get_uuid('01')}', '{get_uuid('13')}', '{get_now()}', '{get_now()}'),
+                    ('{get_uuid('15')}', 'Sub-item 15', '/top_level/sub-item_15', '{get_uuid('01')}', '{get_uuid('13')}', '{get_now()}', '{get_now()}'),
+                    ('{get_uuid('16')}', 'Sub-item 16', '/top_level/sub-item_15/sub-item_16', '{get_uuid('01')}', '{get_uuid('15')}', '{get_now()}', '{get_now()}'),
+                    ('{get_uuid('17')}', 'Item 17', '/top_level/sub-item_15/item_17', '{get_uuid('01')}', '{get_uuid('15')}', '{get_now()}', '{get_now()}'),
+                    ('{get_uuid('18')}', 'Item 18', '/top_level/sub-item_15/item_18', '{get_uuid('01')}', '{get_uuid('15')}', '{get_now()}', '{get_now()}'),
+                    ('{get_uuid('19')}', 'Item 19', '/top_level/sub-item_15/sub-item_16/item_19', '{get_uuid('01')}', '{get_uuid('16')}', '{get_now()}', '{get_now()}'),    
+                    ('{get_uuid('110')}', 'Links', '/links/', '{get_uuid('01')}', null, '{get_now()}', '{get_now()}'),
                     ('{get_uuid('111')}', 'Python', 'https://dzen.ru/python', '{get_uuid('01')}', '{get_uuid('110')}', '{get_now()}', '{get_now()}');
             """)
     ]
